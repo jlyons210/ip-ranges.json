@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # Quit if missing dependencies
-if [ ! -x $(./check-dependency.sh curl jq) ]; then exit 1; fi
+if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 
 # Quit if [aws-service] is not specified
 if [ $# -eq 0 ]; then
@@ -9,5 +9,6 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# Let it rip!
-curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq -c "[.prefixes[] | select(.service == \"${1^^}\") | .ip_prefix] | unique"
+# Retrieve and filter ip-ranges.json
+./util-get-ip-ranges-json.sh
+jq -c "[.prefixes[] | select(.service == \"${1^^}\") | .ip_prefix] | unique" ip-ranges.json

@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
 
-curl -s https://ip-ranges.amazonaws.com/ip-ranges.json | jq -c '[.prefixes[] | .service] | unique'
+# Quit if missing dependencies
+if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 
+# Retrieve and filter ip-ranges.json
+./util-get-ip-ranges-json.sh
+jq -c "[.prefixes[] | .service] | unique" ip-ranges.json

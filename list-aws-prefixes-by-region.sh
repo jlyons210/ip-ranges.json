@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
 # Quit if missing dependencies
-if "./util-check-dependency.sh date jq stat wget"; then
-    echo "Tools are missing!"
-    exit 1
-fi
+if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 
 # Quit if [aws-region] is not specified
 if [ $# -eq 0 ]; then
