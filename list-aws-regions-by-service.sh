@@ -11,4 +11,5 @@ fi
 
 # Retrieve and filter ip-ranges.json
 ./util-get-ip-ranges-json.sh
-jq -c "[.prefixes[] | select(.service == \"${1^^}\") | .region] | unique" ip-ranges.json
+#jq -c "[.prefixes[] | select(.service == \"${1^^}\") | .region] | unique" ip-ranges.json
+jq -c "{ regions: [.prefixes[] | select(.service == \"${1^^}\") | { region: .region }] | unique }" ip-ranges.json 

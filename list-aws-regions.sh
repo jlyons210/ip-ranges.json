@@ -6,4 +6,5 @@ if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 # Retrieve and filter ip-ranges.json
 ./util-get-ip-ranges-json.sh
 
-jq -c "[.prefixes[] | .region] | unique" ip-ranges.json
+#jq -c "[.prefixes[] | .region] | unique" ip-ranges.json
+jq -c "{ regions: [.prefixes[] | { region: .region }] | unique }" ip-ranges.json

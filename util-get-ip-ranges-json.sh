@@ -6,10 +6,12 @@ if [ -f ip-ranges.json ]; then
     expire_time=$(date --date '-1 day' +%s)
 
     if [ $file_time -lt $expire_time ]; then
+        echo "[INFO] Refreshing stale ip-ranges.json file."
         rm ip-ranges.json
         wget -q https://ip-ranges.amazonaws.com/ip-ranges.json
     fi
 else
     # If ip-ranges.json doesn't exist, download it
+    echo "[INFO] Downloading new ip-ranges.json file."
     wget -q https://ip-ranges.amazonaws.com/ip-ranges.json
 fi
