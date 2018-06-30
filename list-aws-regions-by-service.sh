@@ -1,15 +1,16 @@
 #!/usr/bin/env bash
+#### Lists AWS regions with a specified AWS service deployed using the public ip-ranges.json file.
+#### Author: Jeremy Lyons - jlyons210@gmail.com
 
-# Quit if missing dependencies
+# Check dependencies
 if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 
-# Quit if [aws-service] is not specified
+# Check for required arguements
 if [ $# -eq 0 ]; then
-    printf "Must specify a service name:\n$0 [aws-service]\n"
-    exit 1
+  echo "ERROR: Must specify a service name: $0 [aws-service]" >&2
+  exit 1
 fi
 
-# Retrieve and filter ip-ranges.json
+# Retrieve json and parse
 ./util-get-ip-ranges-json.sh
-#jq -c "[.prefixes[] | select(.service == \"${1^^}\") | .region] | unique" ip-ranges.json
 jq -c "{ regions: [.prefixes[] | select(.service == \"${1^^}\") | { region: .region }] | unique }" ip-ranges.json 

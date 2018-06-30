@@ -1,14 +1,16 @@
 #!/usr/bin/env bash
+#### Lists AWS IPv4 prefixes assigned to a specified region using the public ip-ranges.json file.
+#### Author: Jeremy Lyons - jlyons210@gmail.com
 
-# Quit if missing dependencies
+## Check dependencies
 if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 
-# Quit if [aws-region] is not specified
+## Check for required arguments
 if [ $# -eq 0 ]; then
-    printf "Must specify a region name:\n$0 [aws-region]\n"
-    exit 1
+  echo "ERROR: Must specify a region name: $0 [aws-region]" >&2
+  exit 1
 fi
 
-# Retrieve and filter ip-ranges.json
+## Retrieve json and parse
 ./util-get-ip-ranges-json.sh
-jq -c "[.prefixes[] | select(.region == \"$1\") | .ip_prefix] | unique" ip-ranges.json
+jq -c "{ prefixes: [.prefixes[] | select(.region == \"$1\") | { prefix: .ip_prefix }] | unique }" ip-ranges.json 
