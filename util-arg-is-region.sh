@@ -10,7 +10,7 @@ fi
 
 ## Retrieve json and parse
 ./util-get-ip-ranges-json.sh
-if [[ -z $(./list-aws-regions.sh | jq -c ".regions[] | select(.region == \"$1\") | length") ]]; then
+if [[ -z $(./list-aws-regions.sh | jq -c ".regions[] | select(.region == \"${1,,}\") | length") ]]; then
   ## If this returns a null value, arguement is not an AWS region
   exit 1
 fi
