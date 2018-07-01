@@ -11,6 +11,6 @@ I wrote this set of scripts to give myself some repetitions with git (it's my fi
 * ~~Download ip-ranges.json once per 24 hours, cache locally.~~
 * ~~Create list-aws-prefixes-v6-by-service.sh~~
 
-i----
+----
 ## Bugs:
 * ./list-aws-prefixes.sh: when searching by region and service, an invalid argument on either side is ignored rather than reported.
