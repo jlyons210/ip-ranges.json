@@ -11,6 +11,11 @@ if ! ./util-check-dependency.sh date jq stat wget; then exit 1; fi
 ## Show all prefixes
 if [[ $# -eq 0 ]]; then
   jq -c "{ ipv6_prefixes: [{ ipv6_prefix: .ipv6_prefixes[].ipv6_prefix }] }" ip-ranges.json
+
+## --help?
+elif ./util-arg-is-help.sh $@; then
+  echo "USAGE: $0 [aws-region] [aws-service]"
+
 else
 
   REGION=""
@@ -41,7 +46,7 @@ else
 
   ## Show usage
   else
-    echo "ERROR: Invalid argument provided: $1" >&2
+    echo "ERROR: Invalid argument: $1" >&2
     echo "USAGE: $0 [aws-region] [aws-service]"
   fi
 fi
