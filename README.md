@@ -4,6 +4,7 @@ I wrote this set of scripts to give myself some repetitions with git (it's my fi
 
 ----
 ## To-do:
+* Add --help argument to list-aws-* scripts.
 * ~~Trim out the *-by-* scripts using util-arg-is-*.sh scripts.~~
 * ~~Develop some snazzy logic to detect valid aws-service and aws-region names provided as arguments~~.
 * ~~Look for existence of curl and jq command line tools.~~
