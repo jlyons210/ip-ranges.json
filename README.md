@@ -4,6 +4,7 @@ I wrote this set of scripts to give myself some repetitions with git (it's my fi
 
 ----
 ## To-do:
+* Add count* scripts. - does jq have a countKeys or countObjects method of some kind?
 * Add stdin pipeline support.
 * ~~Add --help argument to list-aws-* scripts.~~
 * ~~Trim out the *-by-* scripts using util-arg-is-*.sh scripts.~~
