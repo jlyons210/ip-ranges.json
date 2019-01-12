@@ -19,5 +19,5 @@ I wrote this set of scripts to give myself some repetitions with git (it's my fi
 
 ## Bugs:
 
-* ./list-aws-prefixes.sh: when searching by region and service, an invalid argument on either side is ignored rather than reported.
+- [ ] ./list-aws-prefixes.sh: when searching by region and service, an invalid argument on either side is ignored rather than reported.
 
