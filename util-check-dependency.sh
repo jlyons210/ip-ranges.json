@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-#### Checks for the installation of any number of comand line utilities as arguments.
+#### Checks for the installation of any number of command line utilities as arguments.
 #### Author: Jeremy Lyons - jlyons210@gmail.com
 
 ## Set initial error status
